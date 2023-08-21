@@ -25,5 +25,31 @@
 
         <input type="submit" value="Submit">
     </form>
+    <table border=1>
+        <table>
+            <tr>
+                <th>S.N.</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Student Course</th>
+                <th>Action</th>
+            </tr>
+            
+            {% for student in studentsData %}
+            <tr>
+            
+            <td>{{forloop.counter}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.gender}}</td>
+            <td>{{student.course}}</td>
+            <td>
+                <a href="">Edit</a>
+                <a href="">Delete</a>
+            </td>
+            </tr>
+            {% endfor %}  
+    </table>   
 </body>
 </html>

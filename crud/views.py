@@ -3,10 +3,17 @@ from . models import Teacher
 from . models import Student
 
 def index(request):
-    return render(request,'index.html')
+    data={
+        
+        'teachersData':Student.objects.all()
+    }
+    return render(request,'index.html',data)
 
 def student(request):
-    return render(request,'student.html')
+    adata={
+        'studentsData':Student.objects.all(),
+    }
+    return render(request,'student.html',adata)
 
 def upload(request):
     if request.method=='POST':
@@ -15,7 +22,7 @@ def upload(request):
         course = request.POST.get('course')
         age = request.POST.get('age')
         Student.objects.create(name=name,age=age,gender=gender,course=course)
-        return render(request,'thankyou.html')
+        return redirect('/')
     else:
         return redirect('/')
 
@@ -24,6 +31,6 @@ def insert(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         Teacher.objects.create(name=name,email=email)
-        return render(request,'thankyou.html')
+        return redirect('/')
     else:
         return redirect('/')
